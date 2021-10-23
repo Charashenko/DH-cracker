@@ -20,7 +20,7 @@ class DiffieHellman:
         return p
 
     def __str__(self):
-        return str("################\n"
+        return str("\n################\n"
             + f"Bit length > {self.bitlen}\n"
             + f"Prime > {self.prime}\n"
             + f"Generator > {self.generator}\n"
