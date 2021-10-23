@@ -31,11 +31,3 @@ class DiffieHellman:
             + f"Key_A > {self.key_a}\n"
             + f"Key_B > {self.key_b}")
 
-def get_prime(bitlen):
-    p = 0
-    while not sp.isprime(p):
-        p = random.getrandbits(bitlen)
-        last_dig = int(repr(p)[-1])
-        if last_dig % 2 == 0 or last_dig % 5 == 0:
-            continue
-    return p
