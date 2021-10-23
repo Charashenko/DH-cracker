@@ -7,7 +7,7 @@ def exec(i):
     print(dh_protocol)
 
 with cf.ThreadPoolExecutor(max_workers=20) as executor: # S multithreadingom
-    executor.map(exec, range(10, 30))
+    executor.map(exec, range(11, 30))
 
-#for i in range(2, 30): # bez multithreadingu
+#for i in range(11, 30): # bez multithreadingu
 #    exec(i)
