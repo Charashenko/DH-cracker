@@ -5,12 +5,12 @@ class DiffieHellman:
     def __init__(self, bitlen):
         self.bitlen = bitlen # bit length of wanted prime number
         self.prime = self.__getPrime(bitlen) # public prime number
-        self.generator = random.getrandbits(10) # public generator
+        self.generator = random.randint(1, self.prime-1) # public generator
         self.pri_a = random.randint(1, self.prime-1) # Alice's private parameter
         self.pri_b = random.randint(1, self.prime-1) # Bob's private parameter
         self.pub_a = pow(self.generator, self.pri_a, self.prime) # Alice's public parameter
         self.pub_b = pow(self.generator, self.pri_b, self.prime) # Bob's public parameter
-        self.key_a = pow(self.pub_b, self.pri_a,self.prime) # Alice's final private key
+        self.key_a = pow(self.pub_b, self.pri_a, self.prime) # Alice's final private key
         self.key_b = pow(self.pub_a, self.pri_b, self.prime) # Bob's final private key
 
     def __getPrime(self,bitlen):
