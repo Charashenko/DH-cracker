@@ -8,10 +8,10 @@ class DiffieHellman:
         self.generator = random.getrandbits(10) # public generator
         self.pri_a = random.randint(1, self.prime-1) # Alice's private parameter
         self.pri_b = random.randint(1, self.prime-1) # Bob's private parameter
-        self.pub_a = self.generator**self.pri_a % self.prime # Alice's public parameter
-        self.pub_b = self.generator**self.pri_b % self.prime # Bob's public parameter
-        self.key_a = self.pub_b**self.pri_a % self.prime # Alice's final private key
-        self.key_b = self.pub_a**self.pri_b % self.prime # Bob's final private key
+        self.pub_a = pow(self.generator, self.pri_a, self.prime) # Alice's public parameter
+        self.pub_b = pow(self.generator, self.pri_b, self.prime) # Bob's public parameter
+        self.key_a = pow(self.pub_b, self.pri_a,self.prime) # Alice's final private key
+        self.key_b = pow(self.pub_a, self.pri_b, self.prime) # Bob's final private key
 
     def __getPrime(self,bitlen):
         p = 0
@@ -31,3 +31,11 @@ class DiffieHellman:
             + f"Key_A > {self.key_a}\n"
             + f"Key_B > {self.key_b}")
 
+def get_prime(bitlen):
+    p = 0
+    while not sp.isprime(p):
+        p = random.getrandbits(bitlen)
+        last_dig = int(repr(p)[-1])
+        if last_dig % 2 == 0 or last_dig % 5 == 0:
+            continue
+    return p
