@@ -34,3 +34,11 @@ Libraries that calculate discrete logarithm are prohibited.
   - Conclusion
   - Attachments
   - References (according to ISO 690)
+
+## How to run
+
+- Run `git clone https://github.com/Charashenko/DH-cracker`
+- Go to downloaded folder
+- Run command in base folder:
+  - For windows: `mkdir venv && python -m venv \venv && python -m pip install -r packages.txt`
+  - For linux: `mkdir venv && python -m venv venv/ && python -m pip install -r packages.txt`

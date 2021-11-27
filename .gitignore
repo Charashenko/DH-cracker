@@ -1,2 +1,4 @@
 venv/
-theory
+theory/
+.idea/
+__pycache__/
