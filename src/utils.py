@@ -1,8 +1,8 @@
 import time, math, sympy, random
 
 class Timer:
-    def __init__(self):
-        print("Started cracking...")
+    def __init__(self, algorithm):
+        print(f"Started cracking using {algorithm}...")
         self.start = time.time()
 
     def stop(self, key1, key2):

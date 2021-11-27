@@ -23,14 +23,8 @@ class DiffieHellman:
             + f"Public_B > {self.pub_b}\n"
             + f"Key_A > {self.key_a}\n"
             + f"Key_B > {self.key_b}")
-    
-    def __getRandomGenerator(self, prime): # This code was borrowed from user kasravnd at https://stackoverflow.com/questions/40190849
-        required_set = {num for num in range(1, prime) if math.gcd(num, prime)}
-        generators = [g for g in range(1, prime) if required_set == {pow(g, powers, prime)
-            for powers in range(1, prime)}]
-        return generators[random.randint(0, len(generators)-1)]
 
-    def __getGenerator(self, prime):
+    def __getGenerator(self, prime): # This code was borrowed from user kasravnd at https://stackoverflow.com/questions/40190849
         required_set = {num for num in range(1, prime) if math.gcd(num, prime)}
         for g in range(prime, 1, -1):
             if required_set == {pow(g, powers, prime) for powers in range(1, prime)}:

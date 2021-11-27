@@ -13,7 +13,7 @@ logo = """
 print(logo)
 
 dhprotocol = dhp.DiffieHellman(19) # Create DH key exchange with required bitlen
-print(dhprotocol)
+#print(dhprotocol)
 dhcracker = dhc.Cracker(dhprotocol)
 dhcracker.crack_bf()
 dhcracker.crack_bsgs()
