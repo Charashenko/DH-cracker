@@ -8,7 +8,7 @@ class Timer:
     def stop(self, key1, key2):
         self.end = time.time()
         self.duration = self.end - self.start
-        print(f"Found key in > {self.duration}")
+        print(f"Found key in > {round(self.duration, 6)}s")
         print(f"Calculated key > {key1}")
         print(f"Original key > {key2}")
 
