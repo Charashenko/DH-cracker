@@ -4,9 +4,9 @@ class DiffieHellman:
     def __init__(self, bitlen):
         self.bitlen = bitlen # bit length of wanted prime number
         self.prime = utils.getPrime(bitlen) # public prime number
-        self.generator = self.__getGenerator(self.prime) # public generator
-        self.pri_a = random.randint(1, self.prime-1) # Alice's private parameter
-        self.pri_b = random.randint(1, self.prime-1) # Bob's private parameter
+        self.generator = random.randint(1, self.prime-1) #self.__getGenerator(self.prime) # public generator
+        self.pri_a = random.randint(1, self.prime-2) # Alice's private parameter
+        self.pri_b = random.randint(1, self.prime-2) # Bob's private parameter
         self.pub_a = pow(self.generator, self.pri_a, self.prime) # Alice's public parameter
         self.pub_b = pow(self.generator, self.pri_b, self.prime) # Bob's public parameter
         self.key_a = pow(self.pub_b, self.pri_a, self.prime) # Alice's final private key
