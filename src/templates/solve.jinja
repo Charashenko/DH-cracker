@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.center {
+    margin: auto;
+    width: 33%;
+}
+h1 {text-align: center;}
+h3 {text-align: center;}
+</style>
+<head>
+    <title>Diffie-Hellman Cracker</title>
+</head>
+<body>
+    <h1>Diffie-Hellman Cracker</h1>
+    <div class="center">
+        <h3>Parameters</h3>
+        {#
+        {{bitlen}}<br>
+        {{prime}}<br>
+        {{gen}}<br>
+        {{pri_a}}<br>
+        {{pri_b}}<br>
+        {{pub_a}}<br>
+        {{pub_b}}<br>
+        {{key_a}}<br>
+        {{key_b}}<br>
+        {{msg}}#}
+        {% for key, value in results.items() %}
+            <h4>Key: {{key}}</h4>
+            <h5>Value: {{value}}</h5>
+        {% endfor %}
+    </div>
+</body>
+</html>

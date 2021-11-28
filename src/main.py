@@ -1,41 +1,53 @@
 import dhprotocol as dhp
 import dhcracker as dhc
 
-logo = """
- ▄▄▄▄▄▄  ▄▄   ▄▄    ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄   ▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   
-█      ██  █ █  █  █       █   ▄  █ █       █       █   █ █ █       █   ▄  █  
-█  ▄    █  █▄█  █  █       █  █ █ █ █   ▄   █       █   █▄█ █    ▄▄▄█  █ █ █  
-█ █ █   █       █  █     ▄▄█   █▄▄█▄█  █▄█  █     ▄▄█      ▄█   █▄▄▄█   █▄▄█▄ 
-█ █▄█   █   ▄   █  █    █  █    ▄▄  █       █    █  █     █▄█    ▄▄▄█    ▄▄  █
-█       █  █ █  █  █    █▄▄█   █  █ █   ▄   █    █▄▄█    ▄  █   █▄▄▄█   █  █ █
-█▄▄▄▄▄▄██▄▄█ █▄▄█  █▄▄▄▄▄▄▄█▄▄▄█  █▄█▄▄█ █▄▄█▄▄▄▄▄▄▄█▄▄▄█ █▄█▄▄▄▄▄▄▄█▄▄▄█  █▄█
-"""
-print(logo)
+def getMethods():
+    return {
+            1: "dhcrack.crack_bf()",
+            2: "dhcrack.crack_bsgs()",
+            3: "dhcrack.crack_pol_rho()"
+        }
 
-cont = "y"
-while cont == "y":
-    bitlen = 0
-    while bitlen <= 1:
-        bitlen = int(input("Choose a bit length of a prime number (2-x): "))
-
-    choices = {
-        1: "dhcrack.crack_bf()",
-        2: "dhcrack.crack_bsgs()",
-        3: "dhcrack.crack_pol_rho()"
-    }
-    method = 0
-    while method not in choices:
-        method = int(input("Choose method of cracking:\n1 = Bruteforce,\n2 = Baby-step Giant-step,\n3 = Pollard Rho\n"))
-
+def solveDH(bitlen, method):
     dhprot = dhp.DiffieHellman(bitlen) # Create DH key exchange with required bitlen
-    print(dhprot)
-    dhcrack = dhc.Cracker(dhprot)
-
+    dhcrack = dhc.Cracker(dhprot) # Create DH Cracker
     try:
-        exec(choices[method], {"dhcrack": dhcrack})
+        exec(getMethods()[method], {"dhcrack": dhcrack}) # Execute one of the methods
+        return dhcrack
     except KeyboardInterrupt:
         print("\nCracking was cancelled by the user...")
+    
+def consoleApp():
+    logo = """
+    ▄▄▄▄▄▄  ▄▄   ▄▄    ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄   ▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   
+    █      ██  █ █  █  █       █   ▄  █ █       █       █   █ █ █       █   ▄  █  
+    █  ▄    █  █▄█  █  █       █  █ █ █ █   ▄   █       █   █▄█ █    ▄▄▄█  █ █ █  
+    █ █ █   █       █  █     ▄▄█   █▄▄█▄█  █▄█  █     ▄▄█      ▄█   █▄▄▄█   █▄▄█▄ 
+    █ █▄█   █   ▄   █  █    █  █    ▄▄  █       █    █  █     █▄█    ▄▄▄█    ▄▄  █
+    █       █  █ █  █  █    █▄▄█   █  █ █   ▄   █    █▄▄█    ▄  █   █▄▄▄█   █  █ █
+    █▄▄▄▄▄▄██▄▄█ █▄▄█  █▄▄▄▄▄▄▄█▄▄▄█  █▄█▄▄█ █▄▄█▄▄▄▄▄▄▄█▄▄▄█ █▄█▄▄▄▄▄▄▄█▄▄▄█  █▄█
+    """
+    print(logo)
 
-    cont = input("Do you wish to continue? [y/N] ")
-    if cont.lower() not in ["y", "yes"]:
-        cont = "n"
+    cont = "y"
+    while cont == "y":
+        bitlen = 0
+        while bitlen <= 1:
+            bitlen = int(input("Choose a bit length of a prime number (2-x): "))
+
+        method = 0
+        while method not in getMethods():
+            method = int(input("Choose method of cracking:\n1 = Bruteforce,\n2 = Baby-step Giant-step,\n3 = Pollard Rho\n"))
+
+        results = solveDH(bitlen, method)
+        if results:
+            print("#####  Results of cracking  #####")
+            for key, value in results.getResults().items():
+                print(f"{key} > {value}")
+
+        cont = input("Do you wish to continue? [y/N] ")
+        if cont.lower() not in ["y", "yes"]:
+            cont = "n"
+
+if __name__ == "__main__":
+    consoleApp()

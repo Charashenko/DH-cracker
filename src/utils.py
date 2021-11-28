@@ -2,16 +2,16 @@ import time, math, sympy, random
 
 class Timer:
     def __init__(self, algorithm):
-        print(f"Started cracking using {algorithm}...")
         self.start = time.time()
+        self.method = algorithm
+        print(f"Started cracking using {algorithm}...")
 
-    def stop(self, key1, key2):
+    def stop(self, key_calc, key_orig):
         self.end = time.time()
-        self.duration = self.end - self.start
-        print(f"Found key in > {round(self.duration, 6)}s")
-        print(f"Calculated key > {key1}")
-        print(f"Original key > {key2}")
-
+        self.duration = round(self.end - self.start, 6)
+        self.key_calc = key_calc
+        self.key_orig = key_orig
+        
 
 def getPrime(bitlen):
     if bitlen < 2:
