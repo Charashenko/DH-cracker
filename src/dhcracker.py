@@ -37,7 +37,6 @@ class Cracker:
             pairs[pow(gen, i, prime)] = i
         
         gen_inv = pow(gen, ceiling * (prime - 2), prime)
-        y = pub_param
 
         # Giant step
         for i in range(ceiling):

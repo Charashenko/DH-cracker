@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-.center {
+#boxes {
     margin: auto;
+    content: "";
+    display: table;
+    clear: both;
+}
+div {
+    float: left;
     width: 33%;
+    padding: 0 10px;
 }
 h1 {text-align: center;}
 h3 {text-align: center;}
-</style>
 <head>
+</style>
     <title>Diffie-Hellman Cracker</title>
 </head>
 <body>
     <h1>Diffie-Hellman Cracker</h1>
-    <div class="center">
+    <main id="boxes">
         <h3>Parameters</h3>
-        {#
-        {{bitlen}}<br>
-        {{prime}}<br>
-        {{gen}}<br>
-        {{pri_a}}<br>
-        {{pri_b}}<br>
-        {{pub_a}}<br>
-        {{pub_b}}<br>
-        {{key_a}}<br>
-        {{key_b}}<br>
-        {{msg}}#}
-        {% for key, value in results.items() %}
-            <h4>Key: {{key}}</h4>
-            <h5>Value: {{value}}</h5>
-        {% endfor %}
-    </div>
+        <div class="box">
+            <h5>Diffie-Hellman</h5>
+            Bit length: {{results.bitlen}}<br>
+            Prime number: {{results.prime}}<br>
+            Generator: {{results.gen}}<br>
+            Alice's private parameter: {{results.pri_a}}<br>
+            Bob's private parameter: {{results.pri_b}}<br>
+            Alice's public parameter: {{results.pub_a}}<br>
+            Bob's public parameter: {{results.pub_b}}
+        </div>
+        <div class="box">
+            <h5>Cracking results</h5>
+            Original key: {{results.key_orig}}<br>
+            Found key: {{results.key_calc}}<br>
+            Used method: {{results.method}}<br>
+            Time needed: {{results.time_needed}}
+        </div><br>
+        <form method="POST">
+            <input type="submit" value="Go back">
+        </form>
+    </main>
 </body>
 </html>
