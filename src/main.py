@@ -4,8 +4,7 @@ import dhcracker as dhc
 def getMethods():
     return {
             1: "dhcrack.crack_bf()",
-            2: "dhcrack.crack_bsgs()",
-            3: "dhcrack.crack_pol_rho()"
+            2: "dhcrack.crack_bsgs()"
         }
 
 def solveDH(bitlen, method):
@@ -37,7 +36,7 @@ def consoleApp():
 
         method = 0
         while method not in getMethods():
-            method = int(input("Choose method of cracking:\n1 = Bruteforce,\n2 = Baby-step Giant-step,\n3 = Pollard Rho\n"))
+            method = int(input("Choose method of cracking:\n1 = Bruteforce,\n2 = Baby-step Giant-step\n"))
 
         results = solveDH(bitlen, method)
         if results:

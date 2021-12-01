@@ -45,12 +45,6 @@ class Cracker:
                 return i*ceiling+pairs[y]
         return None
 
-    def crack_pol_rho(self):
-        pass
-
-    def __pollard_rho_algorithm(self):
-        pass
-
     def getResults(self):
         return {
             "bitlen": self.dh.bitlen,
